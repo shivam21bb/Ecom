@@ -1,0 +1,42 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block title %}Buy Now{% endblock title %}
+
+{% block main-content %}
+<div class="container my-5">
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="list-group">
+                <a href="{% url 'bottomwear' %}" class="list-group-item list-group-item-action" aria-current="true">All
+                    Cloth </a>
+                <a href="{% url 'bottomweardata' 'X' %}" class="list-group-item list-group-item-action"
+                    aria-current="true">X </a>
+                <a href="{% url 'bottomweardata' 'X' %}" class="list-group-item list-group-item-action"
+                    aria-current="true">X</a>
+                <a href="{% url 'bottomweardata' 'above' %}" class="list-group-item list-group-item-action"
+                    aria-current="true">Above 10000 </a>
+                <a href="{% url 'bottomweardata' 'below' %}" class="list-group-item list-group-item-action"
+                    aria-current="true">Below 10000 </a>
+            </div>
+        </div>
+        <div class="col-sm-9">
+            <div class="row mx-3">
+                <!-- Display mobile products using a grid layout -->
+                {% for m in bottomwear %}
+                <div class="col-sm-4 mb-4">
+                    <div class="card">
+                        <img src="{{ m.product_image.url }}" class="card-img-top" alt="{{ m.titles }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ m.titles }}</h5>
+                            <p class="card-text">{{ m.description }}</p>
+                            <p class="card-text fs-5">Price: {{ m.discounted_price }} {{ m.id }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock main-content %}

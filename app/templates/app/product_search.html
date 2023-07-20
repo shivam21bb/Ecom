@@ -1,0 +1,17 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block title %}Buy Now{% endblock title %}
+
+{% block main-content %}
+
+    <ul>
+        {% for product in products %}
+            <li>{{ product.name }}</li>
+        {% empty %}
+            <li>No products found.</li>
+        {% endfor %}
+    </ul>
+
+
+{% endblock main-content %}

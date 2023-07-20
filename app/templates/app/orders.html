@@ -1,0 +1,32 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Buy Now{% endblock title %}
+{% block main-content %}
+<div class="container my-5">
+ <div class="row">
+ <h3>Welcome </h3>
+  <div class="col-sm-2 border-end">
+   <ul class="list-unstyled">
+    <li class="d-grid"><a href="{% url 'orders' %}" class="btn btn-primary">Orders</a></li>
+   </ul>
+  </div>
+  <div class="col-sm-9 offset-sm-1">
+    {% for op in order_placed %}
+    <div class="row">
+        <div class="col-sm-3 text-center align-self-center"><img src="{{op.product.product_image.url}}" alt=""
+            srcset="" class="img-fluid img-thumbnail shadow-sm" height="150" width="150"> </div>
+        <div class="col-sm-9">
+          <div>
+            <h5>{{op.product.title}}</h5>
+            <p class="mb-2 text-muted small">{{op.product.description}}</p>
+            <div class="my-3">
+              <label for="quantity">Quantity:</label>
+              <a class="minus-cart btn" pid="{{op.product.id}}"><i class="fas fa-minus-square fa-lg"></i></a>
+              <span id="quantity">{{op.quantity}}</span>
+              <a class="plus-cart btn" pid="{{op.product.id}}"><i class="fas fa-plus-square fa-lg"></i></a>
+            </div>
+   
+   </div>
+  </div>
+ {% endfor %}
+{% endblock main-content %}
